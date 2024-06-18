@@ -41,52 +41,92 @@ class RoleResource extends Resource
                     'xl' => 3
                 ])
                 ->schema([
-                    Forms\Components\CheckboxList::make('permissions')
-                    ->label('Dashboard')
-                    ->options([
-                        'dashboard-read' => 'View',
-                    ])
-                    ->required(),
 
-                    Forms\Components\CheckboxList::make('permissions')
-                    ->label('User')
-                    ->options([
-                        'user-read' => 'Read',
-                        'user-create' => 'Create',
-                        'user-update' => 'Update',
-                        'user-delete' => 'Delete',
-                    ])
-                    ->required(),
 
-                    Forms\Components\CheckboxList::make('permissions')
-                    ->label('Role')
-                    ->options([
-                        'role-read' => 'Read',
-                        'role-create' => 'Create',
-                        'role-update' => 'Update',
-                        'role-delete' => 'Delete',
+                    Forms\Components\Section::make('General')
+                    // ->description('the action of officially allowing someone to do a particular thing; consent or authorization.')
+                    ->columns([
+                        'sm' => 2,
+                        'xl' => 3
                     ])
-                    ->required(),
+                    ->schema([
+                        Forms\Components\CheckboxList::make('permissions')
+                        ->label('Dashboard')
+                        ->options([
+                            'dashboard-read' => 'View',
+                        ])
+                        ->required(),
+                    ]),
 
-                    Forms\Components\CheckboxList::make('permissions')
-                    ->label('Category')
-                    ->options([
-                        'category-read' => 'Read',
-                        'category-create' => 'Create',
-                        'category-update' => 'Update',
-                        'category-delete' => 'Delete',
-                    ])
-                    ->required(),
 
-                    Forms\Components\CheckboxList::make('permissions')
-                    ->label('Sub Category')
-                    ->options([
-                        'subcategory-read' => 'Read',
-                        'subcategory-create' => 'Create',
-                        'subcategory-update' => 'Update',
-                        'subcategory-delete' => 'Delete',
+                    Forms\Components\Section::make('Security')
+                    // ->description('the action of officially allowing someone to do a particular thing; consent or authorization.')
+                    ->columns([
+                        'sm' => 2,
+                        'xl' => 3
                     ])
-                    ->required(),
+                    ->schema([
+                        Forms\Components\CheckboxList::make('permissions')
+                        ->label('User')
+                        ->options([
+                            'user-read' => 'Read',
+                            'user-create' => 'Create',
+                            'user-update' => 'Update',
+                            'user-delete' => 'Delete',
+                        ])
+                        ->required(),
+
+                        Forms\Components\CheckboxList::make('permissions')
+                        ->label('Role')
+                        ->options([
+                            'role-read' => 'Read',
+                            'role-create' => 'Create',
+                            'role-update' => 'Update',
+                            'role-delete' => 'Delete',
+                        ])
+                        ->required(),
+                    ]),
+
+
+
+
+                    Forms\Components\Section::make('Inventory')
+                    // ->description('the action of officially allowing someone to do a particular thing; consent or authorization.')
+                    ->columns([
+                        'sm' => 2,
+                        'xl' => 3
+                    ])
+                    ->schema([
+                        Forms\Components\CheckboxList::make('permissions')
+                        ->label('Category')
+                        ->options([
+                            'category-read' => 'Read',
+                            'category-create' => 'Create',
+                            'category-update' => 'Update',
+                            'category-delete' => 'Delete',
+                        ])
+                        ->required(),
+
+                        Forms\Components\CheckboxList::make('permissions')
+                        ->label('Sub Category')
+                        ->options([
+                            'subcategory-read' => 'Read',
+                            'subcategory-create' => 'Create',
+                            'subcategory-update' => 'Update',
+                            'subcategory-delete' => 'Delete',
+                        ])
+                        ->required(),
+
+                        Forms\Components\CheckboxList::make('permissions')
+                        ->label('Product')
+                        ->options([
+                            'product-read' => 'Read',
+                            'product-create' => 'Create',
+                            'product-update' => 'Update',
+                            'product-delete' => 'Delete',
+                        ])
+                        ->required(),
+                    ])
                 ]),
             ]);
     }
