@@ -23,20 +23,31 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-cube';
 
-    protected static ?string $navigationGroup = 'Inventory';
+    public static function getLabel(): ?string
+    {
+        return __('labels.product');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('translations.inventory');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                ->label(__('translations.name'))
                 ->required()
                 ->maxLength(255),
 
                 Forms\Components\TextInput::make('code')
+                ->label(__('translations.code'))
                 ->required()
                 ->hintAction(
                     Action::make('generate')
+                    ->label(__('translations.auto'))
                     ->action(function (Set $set, Get $get): void {
                         $name = $get('name');
                         // Extract first two digits (efficiently)
@@ -56,7 +67,7 @@ class ProductResource extends Resource
                 ->maxLength(255),
 
                 Forms\Components\Select::make('category_id')
-                ->label('Category')
+                ->label(__('labels.category'))
                 ->relationship('category', 'name')
                 ->required()
                 ->live()
@@ -66,32 +77,38 @@ class ProductResource extends Resource
                 }),
 
                 Forms\Components\Select::make('subcategory_id')
-                ->label('Sub Category')
+                ->label(__('labels.subcategory'))
                 ->options(fn (\Livewire\Component $livewire): array => $livewire->subcategories),
 
                 Forms\Components\TextInput::make('cost_price')
+                ->label(__('translations.cost_price'))
                 ->required()
                 ->numeric(),
 
                 Forms\Components\TextInput::make('retail_price')
+                ->label(__('translations.retail_price'))
                 ->required()
                 ->numeric(),
 
                 Forms\Components\TextInput::make('minimum_retail_price')
+                ->label(__('translations.minimum_retail_price'))
                 ->numeric(),
 
                 Forms\Components\Select::make('status')
+                ->label(__('translations.status'))
                 ->default(1)
                 ->options([
-                    0 => 'Inactive',
-                    1 => 'Active'
+                    0 => __('translations.inactive'),
+                    1 => __('translations.active')
                 ]),
 
                 Forms\Components\Textarea::make('description')
+                ->label(__('translations.description'))
                 ->columnSpanFull()
                 ->required(),
 
                 Forms\Components\FileUpload::make('image')
+                ->label(__('translations.image'))
                 ->columnSpanFull()
                 ->image()
                 ->imageEditor()
@@ -103,17 +120,19 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label(__('translations.name'))
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('category.name')
-                    ->label('Category')
+                    ->label(__('labels.category'))
                     ->description(fn (Product $record): string => $record->subcategory->name ?? '---'),
 
-                Tables\Columns\TextColumn::make('cost_price'),
+                Tables\Columns\TextColumn::make('cost_price')
+                ->label(__('translations.cost_price')),
 
-                Tables\Columns\TextColumn::make('retail_price'),
+                Tables\Columns\TextColumn::make('retail_price')
+                ->label(__('translations.retail_price')),
             ])
             ->filters([
                 //

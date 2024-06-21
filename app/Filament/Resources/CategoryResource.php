@@ -19,7 +19,15 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
-    protected static ?string $navigationGroup = 'Inventory';
+    public static function getLabel(): ?string
+    {
+        return __('labels.category');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('translations.inventory');
+    }
 
     public static function form(Form $form): Form
     {
@@ -36,12 +44,12 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label(__('translations.name'))
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('sub_categories.name')
-                    ->label('Sub Categories')
+                    ->label(__('labels.subcategory'))
                     ->badge()
             ])
             ->filters([

@@ -22,20 +22,29 @@ class RoleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
-    protected static ?string $navigationGroup = 'Security';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('translations.security');
+    }
 
     protected static ?int $navigationSort = 2;
+
+    public static function getLabel(): ?string
+    {
+        return __('labels.role');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                ->label(__('translations.name'))
                 ->required()
                 ->maxLength(255),
 
-                Forms\Components\Section::make('Permissions')
-                ->description('the action of officially allowing someone to do a particular thing; consent or authorization.')
+                Forms\Components\Section::make(__('labels.permissions'))
+                ->description(__('translations.permission_description'))//'the action of officially allowing someone to do a particular thing; consent or authorization.')
                 ->columns([
                     'sm' => 2,
                     'xl' => 3
@@ -43,7 +52,7 @@ class RoleResource extends Resource
                 ->schema([
 
 
-                    Forms\Components\Section::make('General')
+                    Forms\Components\Section::make(__('translations.general'))
                     // ->description('the action of officially allowing someone to do a particular thing; consent or authorization.')
                     ->columns([
                         'sm' => 2,
@@ -51,79 +60,74 @@ class RoleResource extends Resource
                     ])
                     ->schema([
                         Forms\Components\CheckboxList::make('permissions')
-                        ->label('Dashboard')
+                        ->label(__('labels.dashboard'))
                         ->options([
-                            'dashboard-read' => 'View',
+                            'dashboard-read' => __('translations.read'),
                         ])
                         ->required(),
                     ]),
 
 
-                    Forms\Components\Section::make('Security')
-                    // ->description('the action of officially allowing someone to do a particular thing; consent or authorization.')
+                    Forms\Components\Section::make(__('translations.security'))
                     ->columns([
                         'sm' => 2,
                         'xl' => 3
                     ])
                     ->schema([
                         Forms\Components\CheckboxList::make('permissions')
-                        ->label('User')
+                        ->label(__('labels.user'))
                         ->options([
-                            'user-read' => 'Read',
-                            'user-create' => 'Create',
-                            'user-update' => 'Update',
-                            'user-delete' => 'Delete',
+                            'user-read' => __('translations.read'),
+                            'user-create' => __('translations.create'),
+                            'user-update' => __('translations.update'),
+                            'user-delete' => __('translations.delete'),
                         ])
                         ->required(),
 
                         Forms\Components\CheckboxList::make('permissions')
-                        ->label('Role')
+                        ->label(__('labels.role'))
                         ->options([
-                            'role-read' => 'Read',
-                            'role-create' => 'Create',
-                            'role-update' => 'Update',
-                            'role-delete' => 'Delete',
+                            'role-read' => __('translations.read'),
+                            'role-create' => __('translations.create'),
+                            'role-update' => __('translations.update'),
+                            'role-delete' => __('translations.delete'),
                         ])
                         ->required(),
                     ]),
 
-
-
-
-                    Forms\Components\Section::make('Inventory')
-                    // ->description('the action of officially allowing someone to do a particular thing; consent or authorization.')
+                    Forms\Components\Section::make(__('translations.inventory'))
                     ->columns([
                         'sm' => 2,
                         'xl' => 3
                     ])
                     ->schema([
                         Forms\Components\CheckboxList::make('permissions')
-                        ->label('Category')
+                        ->label(__('labels.category'))
                         ->options([
-                            'category-read' => 'Read',
-                            'category-create' => 'Create',
-                            'category-update' => 'Update',
-                            'category-delete' => 'Delete',
+                            'category-read' => __('translations.read'),
+                            'category-create' => __('translations.create'),
+                            'category-update' => __('translations.update'),
+                            'category-delete' => __('translations.delete'),
                         ])
                         ->required(),
 
                         Forms\Components\CheckboxList::make('permissions')
-                        ->label('Sub Category')
+                        ->label(__('labels.subcategory'))
                         ->options([
-                            'subcategory-read' => 'Read',
-                            'subcategory-create' => 'Create',
-                            'subcategory-update' => 'Update',
-                            'subcategory-delete' => 'Delete',
+                            'subcategory-read' => __('translations.read'),
+                            'subcategory-create' => __('translations.create'),
+                            'subcategory-update' => __('translations.update'),
+                            'subcategory-delete' => __('translations.delete'),
                         ])
                         ->required(),
 
                         Forms\Components\CheckboxList::make('permissions')
-                        ->label('Product')
+                        ->label(__('labels.product'))
                         ->options([
-                            'product-read' => 'Read',
-                            'product-create' => 'Create',
-                            'product-update' => 'Update',
-                            'product-delete' => 'Delete',
+                            'product-read' => __('translations.read'),
+                            'product-create' => __('translations.create'),
+                            'product-update' => __('translations.update'),
+                            'product-delete' => __('translations.delete'),
                         ])
                         ->required(),
                     ])
@@ -136,14 +140,14 @@ class RoleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label(__('translations.name'))
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('permission_labels')
-                    ->label('Permissions')
+                    ->label(__('labels.permissions'))
                     ->badge()
-                    ->separator(','),
+                    ->separator(',')
             ])
             ->filters([
                 //

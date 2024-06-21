@@ -17,25 +17,35 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-key';
 
-    protected static ?string $navigationGroup = 'Security';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('translations.security');
+    }
 
     protected static ?int $navigationSort = 1;
+
+    public static function getLabel(): ?string
+    {
+        return __('labels.user');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                ->label(__('translations.name'))
                 ->required()
                 ->maxLength(255),
 
                 Forms\Components\TextInput::make('email')
+                ->label(__('translations.email'))
                 ->email()
                 ->required()
                 ->maxLength(255),
 
                 Forms\Components\Toggle::make('is_update_password')
-                ->label('Update Password?')
+                ->label(__('translations.update_password?'))
                 ->reactive()
                 ->requiredWith('price')
                 ->hidden($form->getOperation() == 'create')
@@ -45,6 +55,7 @@ class UserResource extends Resource
                 ->columnSpan(12),
 
                 Forms\Components\TextInput::make('password')
+                ->label(__('translations.password'))
                 ->password()
                 ->required()
                 ->hidden(
@@ -53,6 +64,7 @@ class UserResource extends Resource
                 ->maxLength(255),
 
                 Forms\Components\Select::make('role')
+                ->label(__('labels.role'))
                 ->relationship('role', 'name')
                 ->required()
                 ->searchable(),
@@ -64,17 +76,17 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label(__('translations.name'))
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('email')
-                    ->label('Email')
+                    ->label(__('translations.email'))
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('role.name')
-                    ->label('Role')
+                    ->label(__('labels.role'))
                     ->searchable()
                     ->sortable(),
             ])

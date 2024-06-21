@@ -36,7 +36,9 @@ class Role extends Model
     public function getPermissionLabelsAttribute()
     {
         return collect($this->permissions)->map(function($permission) {
-            return ucwords(str_replace('-', ' ', $permission));
+            $arr = explode('-', $permission);
+
+            return __('labels.' . $arr[0]) . ' - ' . __('translations.' . $arr[1]);
         });
     }
 }
