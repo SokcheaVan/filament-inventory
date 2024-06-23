@@ -123,6 +123,17 @@ class RoleResource extends Resource
                         ])
                         ->required(),
 
+                        Forms\Components\CheckboxList::make('permissions')
+                        ->label(__('labels.seller'))
+                        ->options([
+                            'seller-read' => __('translations.read'),
+                            'seller-create' => __('translations.create'),
+                            'seller-update' => __('translations.update'),
+                            'seller-delete' => __('translations.delete'),
+                            'seller-export_excel' => __('translations.export_excel'),
+                        ])
+                        ->required(),
+
                         // Forms\Components\CheckboxList::make('permissions')
                         // ->label(__('labels.product'))
                         // ->options([

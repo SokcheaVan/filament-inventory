@@ -7,6 +7,7 @@ return [
     'company' => 'company',
     'email' => 'email',
     'phone' => 'phone',
+    'other_phones' => 'other_phones',
     'code' => 'code',
     'image' => 'image',
     'password' => 'password',
