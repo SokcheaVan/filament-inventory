@@ -40,6 +40,14 @@ class SubCategoryPolicy
         return !$user->role || in_array('subcategory-update', $user->role->permissions);
     }
 
+    /*
+     * Determine whether the user can update the model.
+     */
+    public function export(User $user, SubCategory $product): bool
+    {
+        return !$user->role || in_array('subcategory-export_excel', $user->role->permissions);
+    }
+
     /**
      * Determine whether the user can delete the model.
      */

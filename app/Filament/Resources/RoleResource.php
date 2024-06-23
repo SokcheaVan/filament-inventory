@@ -95,6 +95,45 @@ class RoleResource extends Resource
                         ->required(),
                     ]),
 
+                    Forms\Components\Section::make(__('translations.sell'))
+                    ->columns([
+                        'sm' => 2,
+                        'xl' => 3
+                    ])
+                    ->schema([
+                        Forms\Components\CheckboxList::make('permissions')
+                        ->label(__('labels.customer'))
+                        ->options([
+                            'customer-read' => __('translations.read'),
+                            'customer-create' => __('translations.create'),
+                            'customer-update' => __('translations.update'),
+                            'customer-delete' => __('translations.delete'),
+                            'customer-export_excel' => __('translations.export_excel'),
+                        ])
+                        ->required(),
+
+                        Forms\Components\CheckboxList::make('permissions')
+                        ->label(__('labels.customer_bank_account'))
+                        ->options([
+                            'customer_bank_account-read' => __('translations.read'),
+                            'customer_bank_account-create' => __('translations.create'),
+                            'customer_bank_account-update' => __('translations.update'),
+                            'customer_bank_account-delete' => __('translations.delete'),
+                            'customer_bank_account-export_excel' => __('translations.export_excel'),
+                        ])
+                        ->required(),
+
+                        // Forms\Components\CheckboxList::make('permissions')
+                        // ->label(__('labels.product'))
+                        // ->options([
+                        //     'product-read' => __('translations.read'),
+                        //     'product-create' => __('translations.create'),
+                        //     'product-update' => __('translations.update'),
+                        //     'product-delete' => __('translations.delete'),
+                        // ])
+                        // ->required(),
+                    ]),
+
                     Forms\Components\Section::make(__('translations.inventory'))
                     ->columns([
                         'sm' => 2,
@@ -108,6 +147,7 @@ class RoleResource extends Resource
                             'category-create' => __('translations.create'),
                             'category-update' => __('translations.update'),
                             'category-delete' => __('translations.delete'),
+                            'category-export_excel' => __('translations.export_excel'),
                         ])
                         ->required(),
 
@@ -118,6 +158,7 @@ class RoleResource extends Resource
                             'subcategory-create' => __('translations.create'),
                             'subcategory-update' => __('translations.update'),
                             'subcategory-delete' => __('translations.delete'),
+                            'subcategory-export_excel' => __('translations.export_excel'),
                         ])
                         ->required(),
 
@@ -128,6 +169,7 @@ class RoleResource extends Resource
                             'product-create' => __('translations.create'),
                             'product-update' => __('translations.update'),
                             'product-delete' => __('translations.delete'),
+                            'product-export_excel' => __('translations.export_excel'),
                         ])
                         ->required(),
                     ])

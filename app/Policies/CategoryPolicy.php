@@ -41,6 +41,14 @@ class CategoryPolicy
     }
 
     /**
+     * Determine whether the user can update the model.
+     */
+    public function export(User $user, Category $category): bool
+    {
+        return !$user->role || in_array('category-export_excel', $user->role->permissions);
+    }
+
+    /**
      * Determine whether the user can delete the model.
      */
     public function delete(User $user, Category $category): bool

@@ -61,11 +61,11 @@ class CategoryResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
-            ->headerActions([
-                ExportAction::make()->exports([
+            ->headerActions(auth()->user()->can('export', new Category) ? [
+                ExportAction::make()->label(__('translations.export_excel'))->exports([
                     ExcelExport::make()->fromTable(),
                 ])
-            ])
+            ] : [])
             ->bulkActions([
                 // Tables\Actions\BulkActionGroup::make([
                 //     Tables\Actions\DeleteBulkAction::make(),

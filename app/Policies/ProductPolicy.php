@@ -40,6 +40,14 @@ class ProductPolicy
         return !$user->role || in_array('product-update', $user->role->permissions);
     }
 
+    /*
+     * Determine whether the user can update the model.
+     */
+    public function export(User $user, Product $product): bool
+    {
+        return !$user->role || in_array('product-export_excel', $user->role->permissions);
+    }
+
     /**
      * Determine whether the user can delete the model.
      */
