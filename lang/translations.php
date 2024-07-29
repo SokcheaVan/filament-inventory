@@ -69,9 +69,19 @@ return [
     'export_excel' => 'export_excel',
 
     // Price
+    'price' => 'price',
     'cost_price' => 'cost_price',
     'retail_price' => 'retail_price',
     'minimum_retail_price' => 'minimum_retail_price',
+
+    // Order
+    'order_at' => 'order_at',
+    'quantity' => 'quantity',
+    'total' => 'total',
+    'subtotal' => 'subtotal',
+
+    // Date
+    'date' => 'date',
 
     // Bank
     'bank_name' => 'bank_name',

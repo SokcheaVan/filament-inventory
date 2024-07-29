@@ -13,7 +13,6 @@ class Seller extends Model
 
     protected $guarded = ['created_at', 'updated_at'];
 
-
     /**
      * Start Attribute
      */
